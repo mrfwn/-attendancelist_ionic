@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-img src="/assets/head.png" ></ion-img>
+</ion-header>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Cadastro de Convidado
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+   <ion-list lines="full">
+      <ion-item *ngFor="let item of csvItems">
+        <ion-label>{{ item.title }}</ion-label>        
+      </ion-item>       
+    </ion-list>
+

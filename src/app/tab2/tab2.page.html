@@ -1,3 +1,4 @@
+
 <ion-header>
     <ion-img src="/assets/head.png" ></ion-img>
 </ion-header>
@@ -8,12 +9,43 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
+ 
+<ion-content padding>
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-label stacked>Nome</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.name.valid && (form.controls.name.dirty || form.controls.name.touched)" color="danger">
+      <div [hidden]="!form.controls.name.errors.required">
+        O campo é obrigatório
+      </div>
+    </ion-item>
 
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.email.valid && (form.controls.email.dirty || form.controls.email.touched)" color="danger">
+      <div [hidden]="!form.controls.email.errors.required">
+        O campo é obrigatório
+      </div>
+    </ion-item>
+ 
+    <ion-item>
+      <ion-label stacked>Telefone</ion-label>
+      <ion-input type="tel" formControlName="tel"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.tel.valid && (form.controls.tel.dirty || form.controls.tel.touched)" color="danger">
+      <div [hidden]="!form.controls.tel.errors.required">
+        O campo é obrigatório
+      </div>
+    </ion-item>
+ 
+    <div padding>
+      <ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</ion-button>
+    </div>
+  </form>
+</ion-content>
 
-
-   <ion-list lines="full">
-      <ion-item *ngFor="let item of csvItems">
-        <ion-label>{{ item.title }}</ion-label>        
-      </ion-item>       
-    </ion-list>
-
+ 

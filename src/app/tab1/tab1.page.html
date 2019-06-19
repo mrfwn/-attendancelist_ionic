@@ -9,13 +9,26 @@
     </ion-toolbar>
   </ion-header>
 <ion-content>
-    
-    <ion-list lines="full">
-      <ion-item (click)="getData()" >
-        <ion-label>Jessé Freitas</ion-label>
-        <ion-label >AG1</ion-label>
-      </ion-item>       
-    </ion-list>
+ 
+<ion-content padding>
+ 
+  <ion-list>
+    <ion-item-sliding *ngFor="let contact of contacts | async">
+      <ion-item>
+        <h1>{{ contact.name }}</h1>
+      </ion-item>
+      <ion-item-options side="start">
+        <ion-button color="secondary" (click)="editContact(contact)">
+          <ion-icon name="create"></ion-icon>
+        </ion-button>
+        <ion-button color="danger" (click)="removeContact(contact.key)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+ 
+</ion-content>
    
     
 

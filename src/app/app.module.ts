@@ -28,7 +28,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     messagingSenderId: '#####',
     appId: '########'
   }), AngularFireDatabaseModule , FormsModule, ReactiveFormsModule
->>>>>>> 0b070df312b6f0c32d64d63246e07119ae1efd55
 ],
   providers: [
     StatusBar,

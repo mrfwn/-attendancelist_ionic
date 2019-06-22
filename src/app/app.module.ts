@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
+<<<<<<< HEAD
   imports: [BrowserModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp({
     apiKey: 'AIzaSyBCOh9pPWdTBFC9uchsPFC_VoIAC9Bdvi4',
     authDomain: 'attendancelist-f9109.firebaseapp.com',
@@ -25,6 +26,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     messagingSenderId: '423007922491',
     appId: '1:423007922491:web:3e70fbc4c780d8d2'
   }), AngularFireDatabaseModule , FormsModule , ReactiveFormsModule
+=======
+  imports: [BrowserModule, HttpClientModule, IonicModule.forRoot(), IonicStorageModule.forRoot({
+    name: '__mydb',
+    driverOrder: ['indexeddb', 'sqlite', 'websql']
+  }), AppRoutingModule, AngularFireModule.initializeApp({
+    apiKey: '####',
+    authDomain: '######',
+    databaseURL: '#####',
+    projectId: '######',
+    storageBucket: '######',
+    messagingSenderId: '#####',
+    appId: '########'
+  }), AngularFireDatabaseModule , FormsModule, ReactiveFormsModule
+>>>>>>> 0b070df312b6f0c32d64d63246e07119ae1efd55
 ],
   providers: [
     StatusBar,

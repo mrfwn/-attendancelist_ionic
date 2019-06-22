@@ -11,13 +11,16 @@
 <ion-content>
  
 <ion-content padding>
- 
+
   <ion-list>
     <ion-item-sliding *ngFor="let contact of contacts | async">
-      <ion-item>
+      <ion-item [color]="changeColor(contact) ? 'success' : 'danger'">
         <h1>{{ contact.name }}</h1>
       </ion-item>
       <ion-item-options side="start">
+          <ion-button [color]="changeColor(contact) ? 'danger' : 'success'" (click)="setPresenceCheck(contact)">
+              <ion-icon name="checkmark"></ion-icon>
+            </ion-button>
         <ion-button color="secondary" (click)="editContact(contact)">
           <ion-icon name="create"></ion-icon>
         </ion-button>
@@ -27,9 +30,14 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
- 
+  
 </ion-content>
-   
-    
+  
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="qrRead()">
+          <ion-icon name="qr-scanner"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
 
 </ion-content>

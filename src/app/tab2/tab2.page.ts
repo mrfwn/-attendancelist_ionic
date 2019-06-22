@@ -3,6 +3,7 @@ import { ContactService } from '../services/contact.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
 
 
@@ -19,16 +20,18 @@ export class Tab2Page {
   contact: any;
   // tslint:disable-next-line:no-trailing-whitespace
   constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private provider: ContactService,
-              private toast: ToastController, private activatedroute: ActivatedRoute) {
-    this.contact = this.activatedroute.snapshot.params || {};
-    this.createForm();
+              private toast: ToastController, private activatedroute: ActivatedRoute, private route: Router) {
+    this.contact = (this.activatedroute.snapshot.params) ? this.activatedroute.snapshot.params  : {};
+    console.log(this.contact);
+    this.createForm(this.contact);
   }
-  createForm() {
+  createForm(contact: any) {
     this.form = this.formBuilder.group({
-      key: [this.contact.key],
-      name: [this.contact.name, Validators.required],
-      email: [this.contact.email, Validators.required],
-      tel: [this.contact.tel, Validators.required],
+      key: [contact.key],
+      name: [contact.name, Validators.required],
+      email: [contact.email, Validators.required],
+      agency: [contact.agency, Validators.required],
+      tel: [contact.tel, Validators.required],
     });
   }
 
@@ -36,12 +39,14 @@ export class Tab2Page {
     if (this.form.valid) {
       this.provider.save(this.form.value)
         .then(async () => {
-          const toDo = await this.toast.create({ message: 'Contato salvo com sucesso.', duration: 3000 });
+          const toDo = await this.toast.create({ message: 'Contato salvo com sucesso.', duration: 2000 });
           toDo.present();
-          this.navCtrl.pop();
+          const contact = {};
+          this.createForm(contact);
+          this.route.navigate(['/tabs/tab2/']);
         })
         .catch(async (e) => {
-          const toDo = await this.toast.create({ message: 'Erro ao salvar o contato.', duration: 3000 });
+          const toDo = await this.toast.create({ message: 'Erro ao salvar o contato.', duration: 2000 });
           toDo.present();
           console.error(e);
         });

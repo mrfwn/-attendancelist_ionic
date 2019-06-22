@@ -31,6 +31,16 @@
         O campo é obrigatório
       </div>
     </ion-item>
+
+    <ion-item>
+        <ion-label stacked>Agência</ion-label>
+        <ion-input type="agency" formControlName="agency"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!form.controls.agency.valid && (form.controls.agency.dirty || form.controls.agency.touched)" color="danger">
+        <div [hidden]="!form.controls.agency.errors.required">
+          O campo é obrigatório
+        </div>
+      </ion-item>
  
     <ion-item>
       <ion-label stacked>Telefone</ion-label>

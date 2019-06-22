@@ -26,13 +26,18 @@ export class ContactService {
   save(contact: any) {
     return new Promise((resolve, reject) => {
       if (contact.key) {
+        contact.status = 0;
         this.db.list(this.PATH)
-          .update(contact.key, { name: contact.name, email: contact.email, tel: contact.tel })
-          .then(() => resolve())
+          .update(contact.key, {
+            name: contact.name, email: contact.email, agency: contact.agency
+            , tel: contact.tel, status: contact.status
+          })
+          .then(() => {resolve(); contact = null; })
           .catch((e) => reject(e));
       } else {
+        contact.status = 0;
         this.db.list(this.PATH)
-          .push({ name: contact.name, email: contact.email, tel: contact.tel })
+          .push({ name: contact.name, email: contact.email, agency: contact.agency, tel: contact.tel , status: contact.status })
           .then(() => resolve());
       }
     });
